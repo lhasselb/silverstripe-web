@@ -1,5 +1,5 @@
 FROM php:5.6-apache
-MAINTAINER Brett Tasker "<brett@silverstripe.com>"
+LABEL maintainer Brett Tasker "<brett@silverstripe.com>"
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install components
