@@ -9,6 +9,10 @@ RUN apt-get update -y && apt-get install -y \
 		gzip \
 		libcurl4-openssl-dev \
 		libgd-dev \
+        libjpeg-dev \
+		libfreetype6-dev \
+		libpng12-dev \
+		libpng-dev \
 		libldap2-dev \
 		libmcrypt-dev \
 		libtidy-dev \
@@ -29,6 +33,11 @@ RUN apt-get update -y && apt-get install -y \
 
 # Install PHP Extensions
 RUN docker-php-ext-configure intl && \
+    docker-php-ext-configure gd \
+		--enable-gd-native-ttf \
+        --with-freetype-dir=/usr/include/freetype2 \
+        --with-png-dir=/usr/include \
+        --with-jpeg-dir=/usr/include && \
 	docker-php-ext-configure mysql --with-mysql=mysqlnd && \
 	docker-php-ext-configure mysqli --with-mysqli=mysqlnd && \
 	docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ && \
