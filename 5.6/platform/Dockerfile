@@ -43,13 +43,15 @@ RUN docker-php-ext-configure intl && \
 	docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ && \
 	docker-php-ext-enable xdebug && \
 	docker-php-ext-enable imagick && \
-	sed -i '1 a xdebug.remote_autostart=true' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
+	sed -i '1 a xdebug.remote_autostart=1' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
         sed -i '1 a xdebug.remote_mode=req' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
         sed -i '1 a xdebug.remote_handler=dbgp' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
-        sed -i '1 a xdebug.remote_connect_back=1 ' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
-        sed -i '1 a xdebug.remote_port=9000' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
-        sed -i '1 a xdebug.remote_host=127.0.0.1' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
+        sed -i '1 a xdebug.remote_connect_back=0 ' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
+        sed -i '1 a xdebug.remote_port=9005' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
+        sed -i '1 a xdebug.remote_host=192.168.0.16' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
         sed -i '1 a xdebug.remote_enable=1' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
+        sed -i '1 a xdebug.idekey=VSCODE' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
+        sed -i '1 a xdebug.remote_log=/tmp/xdebug/xdebug.log' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
 	docker-php-ext-install -j$(nproc) \
 		intl \
 		gd \
